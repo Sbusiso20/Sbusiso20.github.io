@@ -1,161 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <!-- Basic -->
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <!-- Mobile Metas -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <!-- Site Metas -->
-  <meta name="keywords" content="" />
-  <meta name="description" content="" />
-  <meta name="author" content="" />
-
+  <!-- Meta and Title Tags -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <meta name="author" content="">
   <title>Register</title>
-  <style>
-  .btn2{
-  background-color:green;
-  border-radius:8px;
-            width:180px;
-            height:40px;
-  }
-  .form1{
-  width:50%;
-  }
-
-  .register-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh; /* Adjust height as needed */
-        }
-
-  </style>
-
-
-  <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-
-  <!-- fonts style -->
+  <!-- Stylesheets and Font Links -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap" rel="stylesheet">
-
-  <!-- font awesome style -->
-  <link href="css/font-awesome.min.css" rel="stylesheet" />
-  <!-- nice select -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" integrity="sha256-mLBIhmBvigTFWPSCtvdu6a76T+3Xyt+K571hupeFLg4=" crossorigin="anonymous" />
-
-  <!-- Custom styles for this template -->
-  <link href="css/style.css" rel="stylesheet" />
-  <!-- responsive style -->
-  <link href="css/responsive.css" rel="stylesheet" />
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" integrity="sha256-mLBIhmBvigTFWPSCtvdu6a76T+3Xyt+K571hupeFLg4=" crossorigin="anonymous">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/responsive.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(120deg, #3498db, #8e44ad);
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Poppins', sans-serif;
+    }
+    .btn2 {
+      background-color: green;
+      border-radius: 8px;
+      width: 180px;
+      height: 40px;
+    }
+    .form1 {
+      width: 100%;
+    }
+    .register-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      width: 60vw; /* Slightly smaller width */
+      max-width: 1400px; /* Ensure maximum width */
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+  </style>
 </head>
-
 <body>
-
-    <header>
-        <div class="hero_area">
-    <!-- header section strats -->
-    <header class="header_section">
-      <div class="container-fluid">
-        <nav class="navbar navbar-expand-lg custom_nav-container ">
-          <a class="navbar-brand" href="index.html">
-            <span>
-              Rea Vaya
-            </span>
-          </a>
-
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class=""> </span>
-          </button>
-
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav  ml-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="index.html">Home</a>
-              </li>
-			  <li class="nav-item">
-			   <a class="nav-link" href="Map.html">Calculate Price</a>
-              </li>
-			  <li class="nav-item">
-                <a class="nav-link" href="purchase.html">Purchase</a>
-              </li>
-			  <li class="nav-item">
-                <a class="nav-link" href="TrackBus.html">Track Bus</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="Login.html">
-                  <i class="fa fa-user" aria-hidden="true"></i>
-                  <span>
-				  Login
-                  </span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="registration.html">
-                  <i class="fa fa-user" aria-hidden="true"></i>
-                  <span>
-                    Sign Up
-                  </span>
-                </a>
-              </li>
-              <form class="form-inline">
-                <button class="btn   nav_search-btn" type="submit">
-                  <i class="fa fa-search" aria-hidden="true"></i>
-                </button>
-              </form>
-            </ul>
+  <main>
+    <section>
+      <div class="register-container">
+        <h1 style="color: #333; font-weight: bold;">Register</h1>
+        <form class="form1" id="registerForm">
+          <div>
+            <h4>Username:</h4>
+            <input type="text" class="form-control" id="userName" placeholder="Enter Username...">
           </div>
-        </nav>
-      </div>
-    </header>
-    <!-- end header section -->
-
-    <main>
-        <section>
-            <div class="container register-container">
-                <h1 style="color: aliceblue; font-weight: bold;">Register</h1>
-                <form class="form1" >
-                    <div>
-                        <h4 color="white" >Username:</h4>
-						<input type="text" class="form-control" id="userName" placeholder="Enter Username...">
-                    </div>
-                    <div>
-                        <h4 color="white" >Email:</h4>
-						<input type="text" class="form-control" id="email" placeholder="Enter Email...">
-                    </div>
-                    <div>
-                        <h4 color="white" >Password:</h4>
-						<input type="text" class="form-control" id="password" placeholder="Enter Password...">
-                    </div>
-                    <div>
-                        <h4 color="white" >Confirm Password:</h4>
-						<input type="text" class="form-control" id="confirm_password" placeholder="Confirm Password...">
-                    </div>
-					<br>
-                    <div class="form-group ">
-                      <div class="btn-box">
-                        <button type="submit" class="btn2">Register</button>
-                      </div>
-                    </div>
-                </form>
+          <div>
+            <h4>Email:</h4>
+            <input type="text" class="form-control" id="email" placeholder="Enter Email...">
+          </div>
+          <div>
+            <h4>Password:</h4>
+            <input type="password" class="form-control" id="password" placeholder="Enter Password...">
+          </div>
+          <div>
+            <h4>Confirm Password:</h4>
+            <input type="password" class="form-control" id="confirm_password" placeholder="Confirm Password...">
+          </div>
+          <br>
+          <div class="form-group">
+            <div class="btn-box">
+              <button type="submit" class="btn2">Register</button>
             </div>
-        </section>
-    </main>
-
-    <footer>
-        <!-- Footer content -->
-    </footer>
-	 <!-- jQery -->
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
   <script src="js/jquery-3.4.1.min.js"></script>
-  <!-- bootstrap js -->
   <script src="js/bootstrap.js"></script>
-  <!-- nice select -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js" integrity="sha256-Zr3vByTlMGQhvMfgkQ5BtWRSKBGa2QlspKYJnkjZTmo=" crossorigin="anonymous"></script>
-  <!-- custom js -->
   <script src="js/custom.js"></script>
+  <script>
+    document.getElementById('registerForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const userName = document.getElementById('userName').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirm_password').value;
 
+      if (password !== confirmPassword) {
+        alert('Passwords do not match');
+        return;
+      }
+
+      const user = { userName, email, password };
+      localStorage.setItem('user', JSON.stringify(user));
+      alert('Registration successful!');
+      setTimeout(() => {
+        window.location.href = 'Login.html';
+      }, 2000);
+    });
+  </script>
 </body>
-
 </html>

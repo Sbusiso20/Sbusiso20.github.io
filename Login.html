@@ -1,176 +1,110 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <!-- Basic -->
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <!-- Mobile Metas -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <!-- Site Metas -->
-    <meta name="keywords" content="" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-
-    <title>Login</title>
-    <style>
-        .login-btn {
-            background-color: green;
-            border-radius:8px;
-            width:180px;
-            height:40px;
-        }
-        .body{
-            background-color:red;
-        }
-        .login-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh; /* Adjust height as needed */
-        }
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 15px; /* Adjust margin as needed */
-        }
-
-        .form-group label {
-            width: 120px; /* Adjust label width as needed */
-            margin-right: 10px; /* Adjust margin as needed */
-        }
-
-        .form-control {
-            width: 100%; /* Take up remaining space */
-        }
-        .btn-box {
-            width: 180px; /* Ensure button box takes full width */
-            display: flex;
-            justify-content: center; /* Center button horizontally within the form */
-            margin-top: 20px; /* Adjust top margin as needed */
-        }
-    </style>
-   
-
-
-    <!-- bootstrap core css -->
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-
-    <!-- fonts style -->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap" rel="stylesheet">
-
-    <!-- font awesome style -->
-    <link href="css/font-awesome.min.css" rel="stylesheet" />
-    <!-- nice select -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" integrity="sha256-mLBIhmBvigTFWPSCtvdu6a76T+3Xyt+K571hupeFLg4=" crossorigin="anonymous" />
-
-    <!-- Custom styles for this template -->
-    <link href="css/style.css" rel="stylesheet" />
-    <!-- responsive style -->
-    <link href="css/responsive.css" rel="stylesheet" />
+  <!-- Meta and Title Tags -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Login</title>
+  <!-- Stylesheets and Font Links -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" integrity="sha256-mLBIhmBvigTFWPSCtvdu6a76T+3Xyt+K571hupeFLg4=" crossorigin="anonymous">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/responsive.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(120deg, #3498db, #8e44ad);
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Poppins', sans-serif;
+    }
+    .login-btn {
+      background-color: green;
+      border-radius: 8px;
+      width: 180px;
+      height: 40px;
+    }
+    .form1 {
+      width: 100%;
+    }
+    .login-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      width: 60vw; /* Use viewport width for container width */
+      max-width: 1400px; /* Ensure maximum width */
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .form-group {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+    .form-control {
+      width: 100%;
+    }
+    .btn-box {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .signup-link {
+      text-align: center;
+    }
+  </style>
 </head>
+<body>
+  <main>
+    <section>
+      <div class="login-container">
+        <h2 style="color: #333; font-weight: bold;">Login</h2>
+        <br>
+        <form id="loginForm" class="form1">
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="text" class="form-control" id="email" placeholder="Enter Email...">
+          </div>
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" id="password" placeholder="Enter Password...">
+          </div>
+          <div class="form-group btn-box">
+            <button type="submit" class="login-btn">Login</button>
+          </div>
+          <p class="signup-link">Do not have an account? <a href="registration.html">Sign Up</a></p>
+        </form>
+      </div>
+    </section>
+  </main>
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js" integrity="sha256-Zr3vByTlMGQhvMfgkQ5BtWRSKBGa2QlspKYJnkjZTmo=" crossorigin="anonymous"></script>
+  <script src="js/custom.js"></script>
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const storedUser = JSON.parse(localStorage.getItem('user'));
 
-<body class="body">
-
-    <header>
-        <div class="hero_area">
-            <!-- header section strats -->
-            <header class="header_section">
-                <div class="container-fluid">
-                    <nav class="navbar navbar-expand-lg custom_nav-container ">
-                        <a class="navbar-brand" href="index.html">
-                            <span>
-                                Rea Vaya
-                            </span>
-                        </a>
-
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class=""> </span>
-                        </button>
-
-						  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-							<ul class="navbar-nav  ml-auto">
-							  <li class="nav-item">
-								<a class="nav-link" href="index.html">Home</a>
-							  </li>
-							  <li class="nav-item">
-							   <a class="nav-link" href="Map.html">Calculate Price</a>
-							  </li>
-							  <li class="nav-item">
-								<a class="nav-link" href="purchase.html">Purchase</a>
-							  </li>
-							  <li class="nav-item">
-								<a class="nav-link" href="TrackBus.html">Track Bus</a>
-							  </li>
-							  <li class="nav-item">
-								<a class="nav-link" href="Login.html">
-								  <i class="fa fa-user" aria-hidden="true"></i>
-								  <span>
-								  Login
-								  </span>
-								</a>
-							  </li>
-							  <li class="nav-item">
-								<a class="nav-link" href="registration.html">
-								  <i class="fa fa-user" aria-hidden="true"></i>
-								  <span>
-									Sign Up
-								  </span>
-								</a>
-							  </li>
-							  <form class="form-inline">
-								<button class="btn   nav_search-btn" type="submit">
-								  <i class="fa fa-search" aria-hidden="true"></i>
-								</button>
-							  </form>
-							</ul>
-						  </div>
-                    </nav>
-                </div>
-            </header>
-            <!-- end header section -->
-
-            <main>
-                <section>
-                    <div class="container login-container">
-                        <h2 style="color: aliceblue; font-weight: bold;" >Login</h2>
-                        <br />
-                        <br />
-                        <form>
-                            <div class="form-group">
-                                <label for="email">Email:</label>
-                                <input type="text" class="form-control" id="email" placeholder="Enter Email...">
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Password:</label>
-                                <input type="password" class="form-control" id="password" placeholder="Enter Password...">
-                            </div>
-
-                            <div class="form-group ">
-                                <div class="btn-box">
-                                    <button type="submit" class="login-btn">Login</button>
-                                </div>
-                            </div>
-                            <p>Do not have an account? <a href="registration.html">Sign Up</a></p>
-                        </form>
-                    </div>
-                </section>
-            </main>
-
-            <footer>
-                <!-- Footer content -->
-            </footer>
-            <!-- jQery -->
-            <script src="js/jquery-3.4.1.min.js"></script>
-            <!-- bootstrap js -->
-            <script src="js/bootstrap.js"></script>
-            <!-- nice select -->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js" integrity="sha256-Zr3vByTlMGQhvMfgkQ5BtWRSKBGa2QlspKYJnkjZTmo=" crossorigin="anonymous"></script>
-            <!-- custom js -->
-            <script src="js/custom.js"></script>
-
+      if (storedUser && storedUser.email === email && storedUser.password === password) {
+        window.location.href = 'home.html';
+      } else {
+        alert('Invalid credentials!');
+      }
+    });
+  </script>
 </body>
-
 </html>

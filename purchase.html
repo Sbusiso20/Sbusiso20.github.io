@@ -143,20 +143,20 @@
               <li class="nav-item">
                 <a class="nav-link" href="index.html">Home</a>
               </li>
-			  <li class="nav-item">
-			   <a class="nav-link" href="Map.html">Calculate Price</a>
+              <li class="nav-item">
+                <a class="nav-link" href="Map.html">Calculate Price</a>
               </li>
-			  <li class="nav-item">
+              <li class="nav-item">
                 <a class="nav-link" href="purchase.html">Purchase</a>
               </li>
-			  <li class="nav-item">
+              <li class="nav-item">
                 <a class="nav-link" href="TrackBus.html">Track Bus</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="Login.html">
                   <i class="fa fa-user" aria-hidden="true"></i>
                   <span>
-				  Login
+            Login
                   </span>
                 </a>
               </li>
@@ -184,9 +184,9 @@
     <!-- about section -->
     <main>
         <div class="container2">
-            <form id="ticketForm">
+            <form id="ticketForm" action="Checkout.html" method="GET">
                 <label for="depart">Departure Point:</label>
-                <select id="depart" required>
+                <select id="depart" name="depart" type="text" required>
                     <option value="">Select Departure Point</option>
                     <option value="Thokoza Park">Thokoza Park</option>
                     <option value="LakeView">LakeView</option>
@@ -200,7 +200,7 @@
                     <option value="Mapetla">Mapetla</option>
                 </select>
                 <label for="destination">Destination:</label>
-                <select id="destination" required>
+                <select id="destination" name="destination" type="text" required>
                     <option value="">Select Destination</option>
                     <option value="Thokoza Park">Thokoza Park</option>
                     <option value="LakeView">LakeView</option>
@@ -215,67 +215,25 @@
                 </select>
                 <label for="numTickets">Number of Tickets:</label>
                 <input type="number" id="numTickets" min="1" value="1" required>
-                <button type="submit">Generate Ticket</button>
+                <button type="submit" >Purchase Ticket</button>
             </form>
             <div id="ticketsContainer" class="ticket-container"></div>
             <div id="price" class="price"></div>
-			<button font="16px" type="submit">Purchase Tickets</button>
         </div>
     </main>
 
     <script>
-        let ticketForm = document.getElementById("ticketForm");
-
-        function calculatePrice(distance) {
-            if (distance <= 5) {
-                return 10.00;
-            } else if (distance <= 10) {
-                return 12.50;
-            } else if (distance <= 15) {
-                return 15.00;
-            } else if (distance <= 25) {
-                return 17.00;
-            } else if (distance <= 35) {
-                return 19.00;
-            } else if (distance <= 45) {
-                return 20.00;
-            } else {
-                return 26.00;
-            }
-        }
-
-        function calculateDistance(departure, destination) {
-            // Dummy function to calculate distance (Replace this with your actual implementation using map API)
-            // Here we are returning random distance for demonstration purpose
-            return Math.floor(Math.random() * 50) + 1; // Random distance between 1 and 50 km
-        }
-
-        ticketForm.addEventListener("submit", function (event) {
+        document.getElementById("ticketForm").addEventListener("submit", function (event) {
             event.preventDefault();
-            const depart = document.getElementById('depart').value;
-            const destination = document.getElementById('destination').value;
-            const numTickets = document.getElementById('numTickets').value;
+            var depart = document.getElementById("depart").value;
+            var destination = document.getElementById("destination").value;
+            var numTickets = document.getElementById("numTickets").value;
+            
+            // Create ticket URL with query parameters
+            var checkoutURL = "Checkout.html" + "?depart=" + encodeURIComponent(depart) + "&destination=" + encodeURIComponent(destination) + "&numTickets=" + encodeURIComponent(numTickets);
 
-            const ticketsContainer = document.getElementById('ticketsContainer');
-            ticketsContainer.innerHTML = ''; // Clear existing tickets
-
-            const distance = calculateDistance(depart, destination);
-            const price = calculatePrice(distance);
-            document.getElementById('price').textContent = `Price per ticket: R${price.toFixed(2)}`;
-
-            for (let i = 0; i < numTickets; i++) {
-                const ticket = document.createElement('div');
-                ticket.classList.add('ticket');
-
-                const qrContainerId = `qr-code-${i}`;
-                const qrContent = `Departure: ${depart}, Destination: ${destination}, Ticket: ${i + 1}`;
-                ticket.innerHTML = `
-                    <h2>Ticket ${i + 1}</h2>
-                    <p><strong>Departure Point:</strong> ${depart}</p>
-                    <p><strong>Destination:</strong> ${destination}</p>
-                `;
-                ticketsContainer.appendChild(ticket);
-            }
+            // Redirect to ticket page
+            window.location.href = checkoutURL;
         });
     </script>
 

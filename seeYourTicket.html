@@ -12,98 +12,122 @@
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>Ticket Purchase</title>
-<style>
-        .header {
-            color: #fff;
-            padding: 20px 0;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .container2 {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-        label {
-            margin-bottom: 10px;
-        }
-        select, input[type="number"] {
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        button {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        .message {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 18px;
-        }
-        .ticket-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-        .ticket {
-            width: calc(33.33% - 10px); /* 33.33% width for each ticket with spacing */
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        .ticket h2 {
-            margin-top: 0;
-        }
-        .qr-code {
-            text-align: center;
-        }
-        .price {
-            margin-top: 20px;
-            text-align: center;
-            font-size: 20px;
-        }
-    </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-  <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <title>View Ticket</title>
+  <style>
+    .header {
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+      margin-bottom: 20px;
+    }
 
-  <!-- fonts style -->
-  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap" rel="stylesheet">
+    .container2 {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
-  <!-- font awesome style -->
-  <link href="css/font-awesome.min.css" rel="stylesheet" />
-  <!-- nice select -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" integrity="sha256-mLBIhmBvigTFWPSCtvdu6a76T+3Xyt+K571hupeFLg4=" crossorigin="anonymous" />
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
 
-  <!-- Custom styles for this template -->
-  <link href="css/style.css" rel="stylesheet" />
-  <!-- responsive style -->
-  <link href="css/responsive.css" rel="stylesheet" />
+    form {
+      display: flex;
+      flex-direction: column;
+    }
 
+    label {
+      margin-bottom: 10px;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .message {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 18px;
+    }
+
+    .ticket-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .ticket {
+      width: calc(33.33% - 10px);
+      /* 33.33% width for each ticket with spacing */
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .ticket h2 {
+      margin-top: 0;
+    }
+
+    .qr-code {
+      text-align: center;
+    }
+	
+	.qr-code-container {
+    display: inline-block;
+    margin-right: 10px; /* Adjust the spacing between QR codes */
+  }
+  
+  .qr-code-row {
+    margin-bottom: 20px; /* Adjust the spacing between rows */
+  }
+
+    .price {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 20px;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+    <!-- fonts style -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap" rel="stylesheet">
+
+    <!-- font awesome style -->
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <!-- nice select -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css"
+        integrity="sha256-mLBIhmBvigTFWPSCtvdu6a76T+3Xyt+K571hupeFLg4=" crossorigin="anonymous" />
+
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="css/responsive.css" rel="stylesheet" />
 </head>
 
 <body class="sub_page">
@@ -114,10 +138,9 @@
       <div class="container-fluid">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
           <a class="navbar-brand" href="index.html">
-              <span>
-                  Rea Vaya
-              </span>
-          </a>
+            <span>
+              Rea Vaya
+            </span>
           </a>
 
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -125,24 +148,24 @@
           </button>
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav  ml-auto">
+            <ul class="navbar-nav ml-auto">
               <li class="nav-item">
                 <a class="nav-link" href="index.html">Home</a>
               </li>
-			  <li class="nav-item">
-			   <a class="nav-link" href="Map.html">Calculate Price</a>
+              <li class="nav-item">
+                <a class="nav-link" href="Map.html">Calculate Price</a>
               </li>
-			  <li class="nav-item">
+              <li class="nav-item">
                 <a class="nav-link" href="purchase.html">Purchase</a>
               </li>
-			  <li class="nav-item">
+              <li class="nav-item">
                 <a class="nav-link" href="TrackBus.html">Track Bus</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="Login.html">
                   <i class="fa fa-user" aria-hidden="true"></i>
                   <span>
-				  Login
+                    Login
                   </span>
                 </a>
               </li>
@@ -168,116 +191,62 @@
   </div>
 
   <!-- about section -->
-    <main>
-        <div class="container2">
-            <form id="ticketForm">
-                <label for="depart">Departure Point:</label>
-                <select id="depart" required>
-                    <option value="">Select Departure Point</option>
-                    <option value="Thokoza Park">Thokoza Park</option>
-                    <option value="LakeView">LakeView</option>
-                    <option value="Ellis Park">Ellis Park</option>
-                    <option value="Braamfontein">Braamfontein</option>
-                    <option value="Metro Centre">Metro Centre</option>
-                    <option value="Noordgesig">Noordgesig</option>
-                    <option value="ParkTown">ParkTown</option>
-                    <option value="Rissik Street">Rissik Street</option>
-                    <option value="Pimville">Pimville</option>
-                    <option value="Mapetla">Mapetla</option>
-                </select>
-                <label for="destination">Destination:</label>
-                <select id="destination" required>
-                    <option value="">Select Destination</option>
-                    <option value="Thokoza Park">Thokoza Park</option>
-                    <option value="LakeView">LakeView</option>
-                    <option value="Ellis Park">Ellis Park</option>
-                    <option value="Braamfontein">Braamfontein</option>
-                    <option value="Metro Centre">Metro Centre</option>
-                    <option value="Noordgesig">Noordgesig</option>
-                    <option value="ParkTown">ParkTown</option>
-                    <option value="Rissik Street">Rissik Street</option>
-                    <option value="Pimville">Pimville</option>
-                    <option value="Mapetla">Mapetla</option>
-                </select>
-                <label for="numTickets">Number of Tickets:</label>
-                <input type="number" id="numTickets" min="1" value="1" required>
-                <button type="submit">Purchase Tickets</button>
-            </form>
-            <div id="ticketsContainer" class="ticket-container"></div>
-            <div id="price" class="price"></div>
-        </div>
-        <div id="qr-code" class="qr-code"></div>
-    </main>
+  <main>
+    <div class="container2">
+      <form id="ticketForm">
+        <label for="depart">Departure Point:</label>
+        <input type="text" id="depart" readonly>
+        <label for="destination">Destination:</label>
+        <input type="text" id="destination" readonly>
+        <label for="numTickets">Number of Tickets:</label>
+        <input type="number" id="numTickets" readonly>
+      </form>
+      <div id="ticketsContainer" class="ticket-container"></div>
+      <div id="price" class="price">Price R15 Per Ticket</div>
+	  <div id="qr-code" class="qr-code"></div>
+    </div>
+    
+	</main>
 
     <script>
-        let ticketForm = document.getElementById("ticketForm");
-        let qrCode;
+      // Read URL parameters
+      const urlParams = new URLSearchParams(window.location.search);
+      const depart = urlParams.get('depart');
+      const destination = urlParams.get('destination');
+      const numTickets = urlParams.get('numTickets');
 
-        function generateQrCode(qrContent, containerId) {
-            return new QRCode(containerId, {
-                text: qrContent,
-                width: 160,
-                height: 160,
-                colorDark: "#000000",
-                colorLight: "#ffffff",
-                correctLevel: QRCode.CorrectLevel.H,
-            });
-        }
+      // Insert parameter values into text inputs
+      document.getElementById("depart").value = depart;
+      document.getElementById("destination").value = destination;
+	  document.getElementById("numTickets").value = numTickets;
 
-        function calculatePrice(distance) {
-            if (distance <= 5) {
-                return 10.00;
-            } else if (distance <= 10) {
-                return 12.50;
-            } else if (distance <= 15) {
-                return 15.00;
-            } else if (distance <= 25) {
-                return 17.00;
-            } else if (distance <= 35) {
-                return 19.00;
-            } else if (distance <= 45) {
-                return 20.00;
-            } else {
-                return 26.00;
-            }
-        }
+      // Disable text inputs
+      document.getElementById("depart").disabled = true;
+      document.getElementById("destination").disabled = true;
+	  document.getElementById("numTickets").disabled = true;
 
-        function calculateDistance(departure, destination) {
-            // Dummy function to calculate distance (Replace this with your actual implementation using map API)
-            // Here we are returning random distance for demonstration purpose
-            return Math.floor(Math.random() * 50) + 1; // Random distance between 1 and 50 km
-        }
-
-        ticketForm.addEventListener("submit", function(event) {
-            event.preventDefault();
-            const depart = document.getElementById('depart').value;
-            const destination = document.getElementById('destination').value;
-            const numTickets = document.getElementById('numTickets').value;
-
-            const ticketsContainer = document.getElementById('ticketsContainer');
-            ticketsContainer.innerHTML = ''; // Clear existing tickets
-
-            const distance = calculateDistance(depart, destination);
-            const price = calculatePrice(distance);
-            document.getElementById('price').textContent = `Price per ticket: R${price.toFixed(2)}`;
-
-            for (let i = 0; i < numTickets; i++) {
-                const ticket = document.createElement('div');
-                ticket.classList.add('ticket');
-
-                const qrContainerId = `qr-code-${i}`;
-                const qrContent = `Departure: ${depart}, Destination: ${destination}, Ticket: ${i + 1}`;
-                ticket.innerHTML = `
-                    <h2>Ticket ${i + 1}</h2>
-                    <p><strong>Departure Point:</strong> ${depart}</p>
-                    <p><strong>Destination:</strong> ${destination}</p>
-                    <div id="${qrContainerId}" class="qr-code"></div>
-                `;
-                ticketsContainer.appendChild(ticket);
-
-                generateQrCode(qrContent, qrContainerId);
-            }
-        });
+      // Generate QR code based on values
+      const qrContent = `Departure: ${depart}, Destination: ${destination}, Number of Tickets: ${numTickets}`;
+      const qrCodeContainer = document.getElementById('qr-code');
+	  for(let i = 0; i < parseInt(numTickets); i++){
+	  // Create a div container for each QR code
+	  
+	  if (i % 3 === 0) {
+      rowContainer = document.createElement('div');
+      rowContainer.classList.add('qr-code-row');
+      qrCodeContainer.appendChild(rowContainer);
+    }
+    const qrContainer = document.createElement('div');
+    qrContainer.classList.add('qr-code-container');
+    qrCodeContainer.appendChild(qrContainer);
+      new QRCode(qrContainer, {
+        text: qrContent,
+        width: 160,
+        height: 160,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H,
+      });}
     </script>
 
   <!-- end about section -->
@@ -318,13 +287,13 @@
             Purchase
           </h4>
           <p>
-              Purchase single trip ticket
-              <br />
-              Create and reload bus tag
-              <br />
-              Buy multiple trip ticket
-              <br />
-              Book and cancel tickets
+            Purchase single trip ticket
+            <br />
+            Create and reload bus tag
+            <br />
+            Buy multiple trip ticket
+            <br />
+            Book and cancel tickets
           </p>
         </div>
         <div class="col-md-3">

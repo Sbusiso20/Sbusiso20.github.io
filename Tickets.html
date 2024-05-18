@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Site Metas -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Ticket Purchase</title>
+    <style>
+        /* Your CSS styles here */
+    </style>
+
+    <!-- Your CSS links here -->
+
+</head>
+
+<body class="sub_page">
+
+    <div class="hero_area">
+        <!-- header section strats -->
+        <!-- Your header code here -->
+    </div>
+
+    <!-- about section -->
+    <main>
+        <div class="container2">
+            <div id="ticketsContainer" class="ticket-container"></div>
+            <div id="price" class="price"></div>
+            <button font="16px" type="submit" onclick="window.location.href='Checkout.html'">Purchase Tickets</button>
+        </div>
+    </main>
+
+    <script>
+        function calculatePrice(distance) {
+            // Your price calculation logic here
+        }
+
+        function calculateDistance(departure, destination) {
+            // Your distance calculation logic here
+        }
+
+        // Function to generate QR codes for tickets
+        function generateTickets() {
+            const depart = "Thokoza Park"; // Example departure point
+            const destination = "LakeView"; // Example destination
+            const numTickets = 4; // Generate QR codes for 4 tickets
+
+            const ticketsContainer = document.getElementById('ticketsContainer');
+            ticketsContainer.innerHTML = ''; // Clear existing tickets
+
+            const distance = calculateDistance(depart, destination);
+            const price = calculatePrice(distance);
+            document.getElementById('price').textContent = `Price per ticket: R${price.toFixed(2)}`;
+
+            for (let i = 0; i < numTickets; i++) {
+                const ticket = document.createElement('div');
+                ticket.classList.add('ticket');
+
+                const qrContainerId = `qr-code-${i}`;
+                const qrContent = `Departure: ${depart}, Destination: ${destination}, Ticket: ${i + 1}`;
+                // You can use a QR code library here to generate QR code images
+                // For example: https://github.com/davidshimjs/qrcodejs
+                // Here, I'm just displaying the ticket information
+                ticket.innerHTML = `
+                    <h2>Ticket ${i + 1}</h2>
+                    <p><strong>Departure Point:</strong> ${depart}</p>
+                    <p><strong>Destination:</strong> ${destination}</p>
+                    <p><strong>QR Code Content:</strong> ${qrContent}</p>
+                `;
+                ticketsContainer.appendChild(ticket);
+            }
+        }
+
+        // Call the function to generate tickets on page load
+        generateTickets();
+    </script>
+
+    <!-- info section -->
+    <!-- Your info section code here -->
+
+    <!-- footer section -->
+    <!-- Your footer section code here -->
+
+    <!-- Your script links here -->
+
+</body>
+
+</html>
