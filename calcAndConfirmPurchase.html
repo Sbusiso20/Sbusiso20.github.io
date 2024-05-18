@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Ticket Purchase</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 10px;
+        }
+        select, input[type="number"] {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .message {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .ticket-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .ticket {
+            width: calc(33.33% - 10px); /* 33.33% width for each ticket with spacing */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .ticket h2 {
+            margin-top: 0;
+        }
+        .qr-code {
+            text-align: center;
+        }
+        .price {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 20px;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header">
+            <h1>Bus Ticket Purchase</h1>
+            <p>This is where commuters purchase tickets for single or multiple trips.</p>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <form id="ticketForm">
+                <label for="depart">Departure Point:</label>
+                <select id="depart" required>
+                    <option value="Thokoza Park">Thokoza Park</option>
+                    <option value="LakeView">LakeView</option>
+                    <option value="Ellis Park">Ellis Park</option>
+                    <option value="Braamfontein">Braamfontein</option>
+                    <option value="Metro Centre">Metro Centre</option>
+                    <option value="Noordgesig">Noordgesig</option>
+                    <option value="ParkTown">ParkTown</option>
+                    <option value="Rissik Street">Rissik Street</option>
+                    <option value="Pimville">Pimville</option>
+                    <option value="Mapetla">Mapetla</option>
+                </select>
+                <label for="destination">Destination:</label>
+                <select id="destination" required>
+                    <option value="Ellis Park">Ellis Park</option>
+                    <option value="Thokoza Park">Thokoza Park</option>
+                    <option value="LakeView">LakeView</option>
+                    <option value="Braamfontein">Braamfontein</option>
+                    <option value="Metro Centre">Metro Centre</option>
+                    <option value="Noordgesig">Noordgesig</option>
+                    <option value="ParkTown">ParkTown</option>
+                    <option value="Rissik Street">Rissik Street</option>
+                    <option value="Pimville">Pimville</option>
+                    <option value="Mapetla">Mapetla</option>
+                </select>
+                <label for="numTickets">Number of Tickets:</label>
+                <input type="number" id="numTickets" min="1" value="1" required>
+                <button id="calculatePriceButton" type="button">Calculate Price</button>
+                <button type="submit">Confirm Tickets</button>
+				
+            </form>
+            <div id="ticketsContainer" class="ticket-container"></div>
+			<button type="submit">purchase ticket</button>
+            <div id="price" class="price"></div>
+        </div>
+        <div id="qr-code" class="qr-code"></div>
+    </main>
+
+    <script>
+        function calculatePrice(distance) {
+            if (distance <= 5) {
+                return 10.00;
+            } else if (distance <= 10) {
+                return 12.50;
+            } else if (distance <= 15) {
+                return 15.00;
+            } else if (distance <= 25) {
+                return 17.00;
+            } else if (distance <= 35) {
+                return 19.00;
+            } else if (distance <= 45) {
+                return 20.00;
+            } else {
+                return 26.00;
+            }
+        }
+
+        function calculateDistance(departure, destination) {
+            const service = new google.maps.DistanceMatrixService();
+            service.getDistanceMatrix({
+                origins: [departure],
+                destinations: [destination],
+                travelMode: 'DRIVING',
+            }, (response, status) => {
+                if (status === 'OK') {
+                    const distance = response.rows[0].elements[0].distance.value; // Distance in meters
+                    const distanceInKm = distance / 1000; // Convert to kilometers
+                    const price = calculatePrice(distanceInKm);
+                    document.getElementById('price').textContent = `Price per ticket: $R{price.toFixed(2)}`;
+                } else {
+                    console.log('Error:', status);
+                }
+            });
+        }
+
+        document.getElementById('calculatePriceButton').addEventListener('click', function() {
+            const depart = document.getElementById('depart').value;
+            const destination = document.getElementById('destination').value;
+            
+            calculateDistance(depart, destination);
+        });
+
+        document.getElementById('ticketForm').addEventListener("submit", function(event) {
+            event.preventDefault();
+            const depart = document.getElementById('depart').value;
+            const destination = document.getElementById('destination').value;
+            const numTickets = document.getElementById('numTickets').value;
+
+            const ticketsContainer = document.getElementById('ticketsContainer');
+            ticketsContainer.innerHTML = ''; // Clear existing tickets
+
+            {
+                const ticket = document.createElement('div');
+                ticket.classList.add('ticket');
+
+                
+                ticket.innerHTML = `
+                    <h2>Ticket </h2>
+					<p><strong>Mpumelelo Hadebe</strong></p>
+                    <p><strong>Departure Point:</strong> ${depart}</p>
+                    <p><strong>Destination:</strong> ${destination}</p>
+					<p><strong>number of tickets:</strong> ${numTickets}</p>
+                `;
+                ticketsContainer.appendChild(ticket);
+            }
+        });
+    </script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4ZFRAknFQe3K7YTbGdKRJ7VJf8ezbnqc&callback=initAutocomplete&libraries=places&v=weekly&callback=initialize&callback=initMap&libraries=places&v=weekly"></script>
+</body>
+</html>

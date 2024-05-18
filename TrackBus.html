@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Track Bus</title>
+
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap" rel="stylesheet">
+
+  <!-- font awesome style -->
+  <link href="css/font-awesome.min.css" rel="stylesheet" />
+  <!-- nice select -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" integrity="sha256-mLBIhmBvigTFWPSCtvdu6a76T+3Xyt+K571hupeFLg4=" crossorigin="anonymous" />
+
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+        }
+        .container2 {
+            display: flex;
+			justify-content: center;
+            align-items: center;
+			height:60vh;
+        }
+        .left-column {
+		flex:1;
+            padding: 20px;
+			text-align: center;
+			justify-content:center;
+            align-items: center;
+        }
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+        .input-container {
+            margin-bottom: 10px;
+			text-align: center;
+			display: flex;
+			justify-content: center;
+            align-items: center;
+        }
+        .input-container label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .input-container select, .input-container button {
+            width: calc(100% - 10px); /* Adjusted width to match input fields */
+            padding: 5px;
+            font-size: 16px;
+            box-sizing: border-box; /* Ensure padding is included in width calculation */
+        }
+        .input-container button {
+            background-color: #00008B ; /* Blue color */
+            color: #fff; /* White text color */
+            cursor: pointer;
+			
+        }
+        .output-container {
+            margin-top: 20px;
+			text-align: center;
+        }
+		button:hover {
+            background-color: #007bff;
+        }
+    </style>
+</head>
+
+<body class="sub_page">
+
+  <div class="hero_area">
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="index.html">
+              <span>
+                  Rea Vaya
+              </span>
+          </a>
+          </a>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class=""> </span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav  ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+              </li>
+			  <li class="nav-item">
+			   <a class="nav-link" href="Map.html">Calculate Price</a>
+              </li>
+			  <li class="nav-item">
+                <a class="nav-link" href="purchase.html">Purchase</a>
+              </li>
+			  <li class="nav-item">
+                <a class="nav-link" href="TrackBus.html">Track Bus</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="Login.html">
+                  <i class="fa fa-user" aria-hidden="true"></i>
+                  <span>
+				  Login
+                  </span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="registration.html">
+                  <i class="fa fa-user" aria-hidden="true"></i>
+                  <span>
+                    Sign Up
+                  </span>
+                </a>
+              </li>
+              <form class="form-inline">
+                <button class="btn   nav_search-btn" type="submit">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+              </form>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+  </div>
+<div class="container2">
+        <div class="left-column">
+            <h1>Bus Tracker</h1>
+            <div class="input-container">
+                <label for="origin">Pickup Point:</label>
+                <select id="origin">
+                    <option value="" disabled selected>Select Pickup Point</option>
+                    <option value="Thokoza Park">Thokoza Park</option>
+                    <option value="UJ Kingsway">UJ Kingsway</option>
+                    <option value="Park Station">Park Station</option>
+					<option value="Riverlea">Riverlea</option>
+                    <option value="Diepkloof">Diepkloof</option>
+                    <option value="Dobsonville">Dobsonville</option>
+                    <!-- Add more Rea Vaya stops here -->
+                </select>
+				
+            </div>
+            <div class="input-container">
+                <label for="destination">Destination:</label>
+                <select id="destination">
+                    <option value="" disabled selected>Select Destination</option>
+                    <option value="Thokoza Park">Thokoza Park</option>
+                    <option value="UJ Kingsway">UJ Kingsway</option>
+                    <option value="Park Station">Park Station</option>
+					<option value="Riverlea">Riverlea</option>
+                    <option value="Diepkloof">Diepkloof</option>
+                    <option value="Dobsonville">Dobsonville</option>
+                    <!-- Add more Rea Vaya stops here -->
+                </select>
+            </div>
+            <div class="input-container">
+                <button onclick="calculateTravelTime()">Track Bus</button>
+            </div>
+            <div class="output-container" id="arrivalInfo"></div>
+        </div>
+    </div>
+
+    <script>
+        var busStops = [
+            { name: 'Thokoza Park', address: 'Thokoza Park, 1682 Ntuli St, Moroka, Soweto' },
+            { name: 'UJ Kingsway', address: 'Rossmore, Johannesburg, 2092' },
+            { name: 'Park Station', address: '61-67 Rissik St, Johannesburg, 2000' },
+			{ name: 'Commando Rd', address: 'Riverlea, Johannesburg, 2093' },
+            { name: 'Diepkloof Station East', address: 'Diepkloof Zone 3, Diepmeadow, 1862' },
+            { name: 'Dobsonville Bus and Coach Sation', address: 'Dobsonville, Johannesburg, 1863' }
+            // Add more Rea Vaya stops here
+        ];
+
+        // Function to calculate travel time
+        function calculateTravelTime() {
+            var originIndex = document.getElementById("origin").selectedIndex;
+            var destinationIndex = document.getElementById("destination").selectedIndex;
+
+            if (originIndex === 0 || destinationIndex === 0) {
+                alert("Please select both origin and destination.");
+                return;
+            }
+
+            var route = busStops.slice(Math.min(originIndex, destinationIndex) - 1, Math.max(originIndex, destinationIndex));
+
+            var currentTime = new Date();
+            var arrivalInfo = '';
+
+            // Calculate travel time between stops
+            for (var i = 0; i < route.length - 1; i++) {
+                var distance = calculateDistanceBetweenStops(route[i].address, route[i + 1].address);
+                var travelTime = calculateTime(distance);
+                var arrivalTime = new Date(currentTime.getTime() + travelTime);
+                arrivalInfo += `<p>${route[i].name} - ${formatTime(arrivalTime)}</p>`;
+                currentTime = arrivalTime;
+            }
+
+            // Add the last stop
+            arrivalInfo += `<p>${route[route.length - 1].name} - ${formatTime(currentTime)}</p>`;
+
+            document.getElementById("arrivalInfo").innerHTML = arrivalInfo;
+        }
+
+        // Function to calculate distance between two stops (dummy function, replace with Google Maps API)
+        function calculateDistanceBetweenStops(origin, destination) {
+            // In real-world scenario, this function would use Google Maps API to calculate distances
+            // For demonstration purpose, let's assume a fixed distance
+            return 10; // Assume distance between stops is 10 km
+        }
+
+        // Function to calculate time based on distance and average speed of the bus
+        function calculateTime(distance) {
+            var averageSpeed = 80; // Average speed of the bus in km/h
+            return (distance / averageSpeed) * 60 * 60 * 1000; // Convert hours to milliseconds
+        }
+
+        // Function to format time as HH:MM
+        function formatTime(date) {
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            return hours.toString().padStart(2, '0') + ':' + minutes.toString().padStart(2, '0');
+        }
+    </script>
+    <!-- Include the Google Maps API with the provided key -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=https://maps.googleapis.com/maps/api/js?key=AIzaSyB4ZFRAknFQe3K7YTbGdKRJ7VJf8ezbnqc&callback=initAutocomplete&libraries=places&v=weekly&callback=initialize&callback=initMap&libraries=places&v=weekly"></script>
+
+  <!-- info section -->
+  <section class="info_section ">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2 info_links">
+          <h4>
+            Menu
+          </h4>
+          <ul>
+            <li>
+              <a href="index.html">
+                Home
+              </a>
+            </li>
+            <li class="active">
+              <a href="about.html">
+                About
+              </a>
+            </li>
+            <li>
+              <a href="purchase.html">
+                Purchase
+              </a>
+            </li>
+            <li>
+              <a href="guide.html">
+                Guide
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h4>
+            Purchase
+          </h4>
+          <p>
+              Purchase single trip ticket
+              <br />
+              Create and reload bus tag
+              <br />
+              Buy multiple trip ticket
+              <br />
+              Book and cancel tickets
+          </p>
+        </div>
+        <div class="col-md-3">
+          <div class="info_social">
+            <h4>
+              Social Link
+            </h4>
+            <div class="social_container">
+              <div>
+                <a href="https://www.facebook.com/ReaVayaBus/">
+                  <i class="fa fa-facebook" aria-hidden="true"></i>
+                </a>
+              </div>
+              <div>
+                <a href="https://twitter.com/ReaVayaBus">
+                  <i class="fa fa-twitter" aria-hidden="true"></i>
+                </a>
+              </div>
+              <div>
+                <a href="">
+                  <i class="fa fa-linkedin" aria-hidden="true"></i>
+                </a>
+              </div>
+              <div>
+                <a href="">
+                  <i class="fa fa-instagram" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="info_form">
+            <h4>
+              Review
+            </h4>
+            <form action="">
+              <input type="text" placeholder="Write review" />
+              <button type="submit">
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end info_section -->
+
+
+  <!-- footer section -->
+  <footer class="footer_section">
+    <div class="container">
+      <p>
+        &copy; <span id="displayYear"></span> All Rights Reserved By Guardians Of The Web(Team 25)
+      </p>
+    </div>
+  </footer>
+  <!-- footer section -->
+
+  <!-- jQery -->
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <!-- bootstrap js -->
+  <script src="js/bootstrap.js"></script>
+  <!-- nice select -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js" integrity="sha256-Zr3vByTlMGQhvMfgkQ5BtWRSKBGa2QlspKYJnkjZTmo=" crossorigin="anonymous"></script>
+  <!-- custom js -->
+  <script src="js/custom.js"></script>
+
+</body>
+
+</html>

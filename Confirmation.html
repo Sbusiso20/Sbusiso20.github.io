@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head >
+    <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Confirmation</title>
+    <style>
+        body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 20px;
+        padding: 0;
+        }
+        .confirmation-container {
+            background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        max-width: 800px;
+        margin: auto;
+        margin-top: 50px;
+        }
+        h2 {
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button.confirm {
+            background-color: red;
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
+        button.confirm:hover {
+            background-color: blue;
+        }
+        button.go-back {
+            background-color: #ccc;
+            color: #000;
+            transition: background-color 0.3s ease;
+        }
+        button.go-back:hover {
+            background-color: #bbb;
+        }
+    </style>
+
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap" rel="stylesheet">
+
+  <!-- font awesome style -->
+  <link href="css/font-awesome.min.css" rel="stylesheet" />
+  <!-- nice select -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" integrity="sha256-mLBIhmBvigTFWPSCtvdu6a76T+3Xyt+K571hupeFLg4=" crossorigin="anonymous" />
+
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+</head>
+
+<body>
+            <form id="form" >
+
+    <main>
+        <section>
+            <div class="confirmation-container">
+    <h2>Confirmation</h2>
+    <p>Please review the information you entered:</p>
+
+    <ul>
+        <li><strong>From:</strong> Harrison St. Station</li> <!-- Replace with actual value -->
+        <li><strong>To:</strong> Westgate Station</li> <!-- Replace with actual value -->
+        <li><strong>Date of Journey:</strong> 2024-05-10</li> <!-- Replace with actual value -->
+        <li><strong>Price:</strong> R20</li> <!-- Replace with actual value -->
+        <li><strong>Selected Bus:</strong> Bus101</li> <!-- Replace with actual value -->
+    </ul>
+
+    <div class="button-container">
+        <form action="Checkout.aspx" method="POST"> <!-- Updated action attribute -->
+            <input type="hidden" name="from" value="Harrison St. Station"> <!-- Replace with actual value -->
+            <input type="hidden" name="to" value="Westgate Station"> <!-- Replace with actual value -->
+            <input type="hidden" name="date" value="2024-05-10"> <!-- Replace with actual value -->
+            <input type="hidden" name="bus" value="Bus101"> <!-- Replace with actual value -->
+
+            <button type="submit" class="confirm">Confirm Booking</button>
+        </form>
+        <button type="button" class="go-back" onclick="window.location.href = 'selectBus.aspx'">Go Back</button> <!-- Updated onclick attribute -->
+    </div>
+</div>
+
+        </section>
+    </main>
+
+    <footer>
+        <!-- Footer content -->
+    </footer>
+	 <!-- jQery -->
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <!-- bootstrap js -->
+  <script src="js/bootstrap.js"></script>
+  <!-- nice select -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js" integrity="sha256-Zr3vByTlMGQhvMfgkQ5BtWRSKBGa2QlspKYJnkjZTmo=" crossorigin="anonymous"></script>
+  <!-- custom js -->
+  <script src="js/custom.js"></script>
+         </form>
+</body>
+
+</html>

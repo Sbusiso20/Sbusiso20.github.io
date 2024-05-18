@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>calculate price</title>
+<style>
+    /* Existing CSS styles remain unchanged */
+
+    .container2 {
+        width: 80%; /* Adjust the width as desired */
+        margin: 0 auto; /* Center the container horizontally */
+		height:71vh;
+    }
+
+    #map-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    #map {
+        height: 600px;
+        width: 70%;
+        border: 2px solid #ccc;
+        border-radius: 10px;
+    }
+
+    #input-container {
+        width: 25%;
+    }
+
+    #input-container div {
+        margin-bottom: 10px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    select, button {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        box-sizing: border-box;
+    }
+
+    button {
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+        margin-bottom: 10px;
+    }
+
+    #price-container {
+        margin-top: -350px;
+        width: 25%; /* Adjusted width to match the input container */
+        border: 2px solid #ccc; /* Add border */
+        border-radius: 10px; /* Add border radius */
+        padding: 10px; /* Add padding */
+    }
+
+    #price-list {
+        list-style-type: none;
+        padding: 0;
+        width: 100%; /* Fill the container */
+        margin-top: 10px; /* Adjusted margin for spacing */
+    }
+
+    #price-list li {
+        margin-bottom: 5px;
+    }
+
+    /* Add CSS to align list view with the map */
+    #price-list {
+        width: 100%; /* Fill the container */
+    }
+
+    /* Add styling for list view items */
+    .list-item {
+        border: 1px solid #ccc; /* Add border */
+        border-radius: 5px; /* Add border radius */
+        padding: 8px; /* Add padding */
+        margin-bottom: 5px; /* Add margin */
+    }
+
+    /* Existing CSS styles remain unchanged */
+
+    /* Add CSS to make prices red and other texts blue */
+    #price-list li {
+        color: blue; /* Set color to blue for other texts */
+    }
+
+    #price-list li:nth-child(odd) {
+        color: red; /* Set color to red for prices */
+    }
+
+    h1,
+    #input-container label,
+    #input-container option {
+        color: blue; /* Set color to blue for labels and options */
+    }
+
+
+</style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap" rel="stylesheet">
+
+  <!-- font awesome style -->
+  <link href="css/font-awesome.min.css" rel="stylesheet" />
+  <!-- nice select -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" integrity="sha256-mLBIhmBvigTFWPSCtvdu6a76T+3Xyt+K571hupeFLg4=" crossorigin="anonymous" />
+
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+
+</head>
+
+<body class="sub_page">
+
+  <div class="hero_area">
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="index.html">
+              <span>
+                  Rea Vaya
+              </span>
+          </a>
+          </a>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class=""> </span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav  ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+              </li>
+			  <li class="nav-item">
+			   <a class="nav-link" href="Map.html">Calculate Price</a>
+              </li>
+			  <li class="nav-item">
+                <a class="nav-link" href="purchase.html">Purchase</a>
+              </li>
+			  <li class="nav-item">
+                <a class="nav-link" href="TrackBus.html">Track Bus</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="Login.html">
+                  <i class="fa fa-user" aria-hidden="true"></i>
+                  <span>
+				  Login
+                  </span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="registration.html">
+                  <i class="fa fa-user" aria-hidden="true"></i>
+                  <span>
+                    Sign Up
+                  </span>
+                </a>
+              </li>
+              <form class="form-inline">
+                <button class="btn   nav_search-btn" type="submit">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+              </form>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+  </div>
+ <!--------------------------------------------------------------------------------------------->
+ <div class="container2">
+    <h1><center>Rea Vaya Route & Pricing</center></h1>
+    <div id="map-container">
+        <div id="input-container">
+           
+                <label for="origin">Origin:</label>
+				<br>
+                <select id="origin">
+                    <option value="">Select origin station</option>
+                </select>
+				<br>
+				<hr>
+           
+			
+            
+                <label for="destination">Destination:</label>
+				<br>
+                <select id="destination">
+                    <option value="">Select destination station</option>
+                </select>
+            
+            <div>
+                <button onclick="calculateRoute()">Determine Route</button>
+            </div>
+            <div>
+                <button id="getPriceBtn" onclick="getPrice()">Get Price</button>
+            </div>
+        </div>
+        <div id="map"></div>
+    </div>
+    <div id="price-container">
+        <ul id="price-list">
+            <li class="list-item" id="price"></li>
+            <li class="list-item" id="additional-info"></li>
+        </ul>
+    </div>
+</div>
+<script>
+    var map;
+    var directionsService;
+    var directionsRenderer;
+    var reaVayaStations = [
+        { name: "Thokoza Park", location: { lat: -26.2363, lng: 27.9565 }},
+        { name: "Lakeview", location: { lat: -26.1773, lng: 27.9943 }},
+        { name: "Ellis Park", location: { lat: -26.2043, lng: 28.0544 }},
+        { name: "Braamfontein", location: { lat: -26.1920, lng: 28.0380 }},
+        { name: "Metro Centre", location: { lat: -26.2009, lng: 28.0379 }},
+        { name: "Noordgesig", location: { lat: -26.2370, lng: 27.9715 }},
+        { name: "Parktown", location: { lat: -26.1826, lng: 28.0339 }},
+        { name: "Rissik Street", location: { lat: -26.2049, lng: 28.0401 }},
+        { name: "Pimville", location: { lat: -26.2794, lng: 27.8692 }},
+        { name: "Mapetla", location: { lat: -26.2477, lng: 27.8744 }}
+    ];
+
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: -26.2041, lng: 28.0473},
+            zoom: 11
+        });
+
+        directionsService = new google.maps.DirectionsService();
+        directionsRenderer = new google.maps.DirectionsRenderer();
+        directionsRenderer.setMap(map);
+
+        // Create markers for each Rea Vaya station
+        reaVayaStations.forEach(function(station) {
+            var marker = new google.maps.Marker({
+                position: station.location,
+                map: map,
+                title: station.name
+            });
+        });
+
+        var originSelect = document.getElementById('origin');
+        var destinationSelect = document.getElementById('destination');
+
+        reaVayaStations.forEach(function(station) {
+            var option = document.createElement('option');
+            option.text = station.name;
+            option.value = station.name;
+            originSelect.add(option);
+            destinationSelect.add(option.cloneNode(true));
+        });
+    }
+
+    function calculateRoute() {
+        var origin = document.getElementById('origin').value;
+        var destination = document.getElementById('destination').value;
+
+        var request = {
+            origin: origin,
+            destination: destination,
+            travelMode: 'TRANSIT',
+            transitOptions: {
+                modes: ['BUS']
+            }
+        };
+
+        directionsService.route(request, function(response, status) {
+            if (status === 'OK') {
+                directionsRenderer.setDirections(response);
+                var distance = response.routes[0].legs[0].distance.value / 1000; // in kilometers
+                console.log("Distance calculated: " + distance.toFixed(2) + " km");
+                document.getElementById('distance').innerText = "Estimated distance: " + distance.toFixed(2) + " km";
+                getPrice(); // Call getPrice() after updating distance
+
+                // Set the color of the route to blue
+                directionsRenderer.setOptions({
+                    polylineOptions: {
+                        strokeColor: 'blue'
+                    }
+                });
+            } else {
+                alert('Error: ' + status);
+            }
+        });
+    }
+
+    function getPrice() {
+        var distance = 12.41; // Set distance to 12.41 km
+        console.log("Distance set for testing: " + distance.toFixed(2) + " km");
+        
+        var price = calculateTicketPrice(distance);
+        console.log("Price calculated: R" + price.toFixed(2));
+        
+        var additionalInfo = [
+            { description: "Single trip card", price: 30.00 },
+            { description: "Double Trip Card", price: 60.00 },
+            { description: "Penalty Fees", price: 30.00 },
+            { description: "Penalty Inspection", price: 110.00 }
+        ];
+        
+        var list = document.getElementById('price-list');
+        list.innerHTML = ''; // Clear previous items
+        
+        // Add distance
+        var distanceItem = document.createElement('li');
+        distanceItem.textContent = "Distance: " + distance.toFixed(2) + " km";
+        list.appendChild(distanceItem);
+        
+        // Add ticket price
+        var priceItem = document.createElement('li');
+        priceItem.textContent = "Ticket Price: R" + price.toFixed(2);
+        list.appendChild(priceItem);
+        
+        // Add additional information
+        additionalInfo.forEach(function(info) {
+            var infoItem = document.createElement('li');
+            infoItem.textContent = info.description + ": R" + info.price.toFixed(2);
+            list.appendChild(infoItem);
+        });
+    }
+
+    function calculateTicketPrice(distance) {
+        if (distance <= 5) {
+            return 10.00;
+        } else if (distance <= 10) {
+            return 12.50;
+        } else if (distance <= 15) {
+            return 15.00;
+        } else if (distance <= 25) {
+            return 17.00;
+        } else if (distance <= 35) {
+            return 19.00;
+        } else if (distance <= 45) {
+            return 20.00;
+        } else {
+            return 26.00;
+        }
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4ZFRAknFQe3K7YTbGdKRJ7VJf8ezbnqc&callback=initMap&libraries=places" defer></script>
+<script>document.getElementById('getPriceBtn').addEventListener('click', getPrice);</script>
+   <!--------------------------------------------------------------------------------------------->
+
+  <!-- end about section -->
+
+  <!-- info section -->
+  <section class="info_section ">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2 info_links">
+          <h4>
+            Menu
+          </h4>
+          <ul>
+            <li>
+              <a href="index.html">
+                Home
+              </a>
+            </li>
+            <li class="active">
+              <a href="about.html">
+                About
+              </a>
+            </li>
+            <li>
+              <a href="purchase.html">
+                Purchase
+              </a>
+            </li>
+            <li>
+              <a href="guide.html">
+                Guide
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h4>
+            Purchase
+          </h4>
+          <p>
+              Purchase single trip ticket
+              <br />
+              Create and reload bus tag
+              <br />
+              Buy multiple trip ticket
+              <br />
+              Book and cancel tickets
+          </p>
+        </div>
+        <div class="col-md-3">
+          <div class="info_social">
+            <h4>
+              Social Link
+            </h4>
+            <div class="social_container">
+              <div>
+                <a href="https://www.facebook.com/ReaVayaBus/">
+                  <i class="fa fa-facebook" aria-hidden="true"></i>
+                </a>
+              </div>
+              <div>
+                <a href="https://twitter.com/ReaVayaBus">
+                  <i class="fa fa-twitter" aria-hidden="true"></i>
+                </a>
+              </div>
+              <div>
+                <a href="">
+                  <i class="fa fa-linkedin" aria-hidden="true"></i>
+                </a>
+              </div>
+              <div>
+                <a href="">
+                  <i class="fa fa-instagram" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="info_form">
+            <h4>
+              Review
+            </h4>
+            <form action="">
+              <input type="text" placeholder="Write review" />
+              <button type="submit">
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end info_section -->
+
+
+  <!-- footer section -->
+  <footer class="footer_section">
+    <div class="container">
+      <p>
+        &copy; <span id="displayYear"></span> All Rights Reserved By Guardians Of The Web(Team 25)
+      </p>
+    </div>
+  </footer>
+  <!-- footer section -->
+
+  <!-- jQery -->
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <!-- bootstrap js -->
+  <script src="js/bootstrap.js"></script>
+  <!-- nice select -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js" integrity="sha256-Zr3vByTlMGQhvMfgkQ5BtWRSKBGa2QlspKYJnkjZTmo=" crossorigin="anonymous"></script>
+  <!-- custom js -->
+  <script src="js/custom.js"></script>
+
+</body>
+
+</html>
