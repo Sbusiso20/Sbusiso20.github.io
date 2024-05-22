@@ -267,43 +267,38 @@
             { name: "Thokoza Park", location: { lat: -26.2363, lng: 27.9565 }},
             { name: "Lakeview", location: { lat: -26.1773, lng: 27.9943 }},
             { name: "Ellis Park", location: { lat: -26.2043, lng: 28.0544 }},
-            { name: "Braamfontein", location: { lat: -26.1920, lng: 28.0380 }},
-            { name: "Metro Centre", location: { lat: -26.2009, lng: 28.0379 }},
-            { name: "Noordgesig", location: { lat: -26.2370, lng: 27.9715 }},
-            { name: "Parktown", location: { lat: -26.1826, lng: 28.0339 }},
-            { name: "Rissik Street", location: { lat: -26.2049, lng: 28.0401 }},
-            { name: "Pimville", location: { lat: -26.2794, lng: 27.8692 }},
-            { name: "Mapetla", location: { lat: -26.2477, lng: 27.8744 }}
+            { name: "Braamfontein", location: { lat: -26.1927, lng: 28.0343 }},
+            { name: "Parktown", location: { lat: -26.1808, lng: 28.0233 }},
+            { name: "Yeoville", location: { lat: -26.1889, lng: 28.0583 }},
+            { name: "CBD", location: { lat: -26.2041, lng: 28.0456 }},
+            { name: "Doornfontein", location: { lat: -26.1977, lng: 28.0588 }}
         ];
 
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
-                center: {lat: -26.2041, lng: 28.0473},
-                zoom: 11
+                center: { lat: -26.2041, lng: 28.0473 },
+                zoom: 12
             });
 
             directionsService = new google.maps.DirectionsService();
             directionsRenderer = new google.maps.DirectionsRenderer();
             directionsRenderer.setMap(map);
 
-            // Create markers for each Rea Vaya station
-            reaVayaStations.forEach(function(station) {
-                var marker = new google.maps.Marker({
-                    position: station.location,
-                    map: map,
-                    title: station.name
-                });
-            });
+            var originSelect = document.getElementById("origin");
+            var destinationSelect = document.getElementById("destination");
 
-            var originSelect = document.getElementById('origin');
-            var destinationSelect = document.getElementById('destination');
-
-            reaVayaStations.forEach(function(station) {
-                var option = document.createElement('option');
+            reaVayaStations.forEach(function (station) {
+                var option = document.createElement("option");
                 option.text = station.name;
                 option.value = station.name;
                 originSelect.add(option);
-                destinationSelect.add(option.cloneNode(true));
+            });
+
+            reaVayaStations.forEach(function (station) {
+                var option = document.createElement("option");
+                option.text = station.name;
+                option.value = station.name;
+                destinationSelect.add(option);
             });
         }
 
@@ -311,224 +306,73 @@
             var origin = document.getElementById('origin').value;
             var destination = document.getElementById('destination').value;
 
-            var request = {
-                origin: origin,
-                destination: destination,
-                travelMode: 'TRANSIT',
-                transitOptions: {
-                    modes: ['BUS']
+            if (!origin || !destination) {
+                alert("Please select both origin and destination stations.");
+                return;
+            }
+
+            var originLocation, destinationLocation;
+
+            reaVayaStations.forEach(function (station) {
+                if (station.name === origin) {
+                    originLocation = station.location;
                 }
+                if (station.name === destination) {
+                    destinationLocation = station.location;
+                }
+            });
+
+            var request = {
+                origin: originLocation,
+                destination: destinationLocation,
+                travelMode: google.maps.TravelMode.DRIVING
             };
 
-            directionsService.route(request, function(response, status) {
-                if (status === 'OK') {
-                    directionsRenderer.setDirections(response);
-                    var distance = response.routes[0].legs[0].distance.value / 1000; // in kilometers
-                    console.log("Distance calculated: " + distance.toFixed(2) + " km");
-                    document.getElementById('distance').innerText = "Estimated distance: " + distance.toFixed(2) + " km";
-                    getPrice(); // Call getPrice() after updating distance
-
-                    // Set the color of the route to blue
-                    directionsRenderer.setOptions({
-                        polylineOptions: {
-                            strokeColor: 'blue'
-                        }
-                    });
+            directionsService.route(request, function (result, status) {
+                if (status == 'OK') {
+                    directionsRenderer.setDirections(result);
                 } else {
-                    alert('Error: ' + status);
+                    alert("Could not calculate route: " + status);
                 }
             });
         }
 
         function getPrice() {
-            var distance = 12.41; // Set distance to 12.41 km
-            console.log("Distance set for testing: " + distance.toFixed(2) + " km");
+            var origin = document.getElementById('origin').value;
+            var destination = document.getElementById('destination').value;
 
-            var price = calculateTicketPrice(distance);
-            console.log("Price calculated: R" + price.toFixed(2));
-
-            var additionalInfo = [
-                { description: "Single trip card", price: 30.00 },
-                { description: "Double Trip Card", price: 60.00 },
-                { description: "Penalty Fees", price: 30.00 },
-                { description: "Penalty Inspection", price: 110.00 }
-            ];
-
-            var list = document.getElementById('price-list');
-            list.innerHTML = ''; // Clear previous items
-
-            // Add distance
-            var distanceItem = document.createElement('li');
-            distanceItem.textContent = "Distance: " + distance.toFixed(2) + " km";
-            list.appendChild(distanceItem);
-
-            // Add ticket price
-            var priceItem = document.createElement('li');
-            priceItem.textContent = "Ticket Price: R" + price.toFixed(2);
-            list.appendChild(priceItem);
-
-            // Add additional information
-            additionalInfo.forEach(function(info) {
-                var infoItem = document.createElement('li');
-                infoItem.textContent = info.description + ": R" + info.price.toFixed(2);
-                list.appendChild(infoItem);
-            });
-			
-			//Display the price
-			document.getElementById('price-container').style.display = 'block';
-
-            // Display the purchase ticket button
-            document.getElementById('purchase-container').style.display = 'block';
-			
-        }
-
-        function calculateTicketPrice(distance) {
-            if (distance <= 5) {
-                return 10.00;
-            } else if (distance <= 10) {
-                return 12.50;
-            } else if (distance <= 15) {
-                return 15.00;
-            } else if (distance <= 25) {
-                return 17.00;
-            } else if (distance <= 35) {
-                return 19.00;
-            } else if (distance <= 45) {
-                return 20.00;
-            } else {
-                return 26.00;
+            if (!origin || !destination) {
+                alert("Please select both origin and destination stations.");
+                return;
             }
+
+            // Simulate a price calculation based on the stations
+            var basePrice = 10; // Base price in some currency
+            var pricePerStation = 2; // Incremental price per station
+
+            var originIndex = reaVayaStations.findIndex(station => station.name === origin);
+            var destinationIndex = reaVayaStations.findIndex(station => station.name === destination);
+
+            var numberOfStations = Math.abs(destinationIndex - originIndex);
+            var totalPrice = basePrice + (numberOfStations * pricePerStation);
+
+            document.getElementById('price').textContent = "Price: $" + totalPrice.toFixed(2);
+            document.getElementById('additional-info').textContent = "Route from " + origin + " to " + destination;
+
+            document.getElementById('price-container').style.display = "block";
+            document.getElementById('purchase-container').style.display = "block";
         }
-		function purchaseTicket(){
-            var depart = document.getElementById("origin").value;
-            var destination = document.getElementById("destination").value;
-            var numTickets = 1;
-            
-            // Create ticket URL with query parameters
-            var checkoutURL = "Checkout.html" + "?depart=" + encodeURIComponent(depart) + "&destination=" + encodeURIComponent(destination) + "&numTickets=" + encodeURIComponent(numTickets);
-			
-			//Redirect to checkout page
-			window.location.href = checkoutURL;
-		}
+
+        function purchaseTicket() {
+            var price = document.getElementById('price').textContent;
+            var info = document.getElementById('additional-info').textContent;
+
+            alert("Purchasing ticket: \n" + info + "\n" + price);
+
+            // Add your ticket purchasing logic here
+        }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4ZFRAknFQe3K7YTbGdKRJ7VJf8ezbnqc&callback=initMap&libraries=places" defer></script>
-    <script>document.getElementById('getPriceBtn').addEventListener('click', getPrice);</script>
-    <!--------------------------------------------------------------------------------------------->
-
-    <!-- end about section -->
-
-    <!-- info section -->
-    <section class="info_section ">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-2 info_links">
-                    <h4>
-                        Menu
-                    </h4>
-                    <ul>
-                        <li>
-                            <a href="index.html">
-                                Home
-                            </a>
-                        </li>
-                        <li class="active">
-                            <a href="about.html">
-                                About
-                            </a>
-                        </li>
-                        <li>
-                            <a href="purchase.html">
-                                Purchase
-                            </a>
-                        </li>
-                        <li>
-                            <a href="guide.html">
-                                Guide
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <h4>
-                        Purchase
-                    </h4>
-                    <p>
-                        Purchase single trip ticket
-                        <br />
-                        Create and reload bus tag
-                        <br />
-                        Buy multiple trip ticket
-                        <br />
-                        Book and cancel tickets
-                    </p>
-                </div>
-                <div class="col-md-3">
-                    <div class="info_social">
-                        <h4>
-                            Social Link
-                        </h4>
-                        <div class="social_container">
-                            <div>
-                                <a href="https://www.facebook.com/ReaVayaBus/">
-                                    <i class="fa fa-facebook" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                            <div>
-                                <a href="https://twitter.com/ReaVayaBus">
-                                    <i class="fa fa-twitter" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                            <div>
-                                <a href="">
-                                    <i class="fa fa-linkedin" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                            <div>
-                                <a href="">
-                                    <i class="fa fa-instagram" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="info_form">
-                        <h4>
-                            Review
-                        </h4>
-                        <form action="">
-                            <input type="text" placeholder="Write review" />
-                            <button type="submit">
-                                Submit
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- end info_section -->
-
-
-    <!-- footer section -->
-    <footer class="footer_section">
-        <div class="container">
-            <p>
-                &copy; <span id="displayYear"></span> All Rights Reserved By Guardians Of The Web(Team 25)
-            </p>
-        </div>
-    </footer>
-    <!-- footer section -->
-
-    <!-- jQery -->
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <!-- bootstrap js -->
-    <script src="js/bootstrap.js"></script>
-    <!-- nice select -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js" integrity="sha256-Zr3vByTlMGQhvMfgkQ5BtWRSKBGa2QlspKYJnkjZTmo=" crossorigin="anonymous"></script>
-    <!-- custom js -->
-    <script src="js/custom.js"></script>
-
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_RIhK917ebOaRibn3xjwLACqYaePbJ30&callback=initMap" async defer></script>
 </body>
 
 </html>
